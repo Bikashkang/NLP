@@ -6,8 +6,8 @@ import re
 from indicnlp.tokenize import sentence_tokenize
 
 # Define file paths
-input_file = "/content/source.txt"
-output_file = "/content/split.xlsx"
+input_file = "/content/text.txt"
+output_file = "/content/output.txt"  # Keep the .txt extension
 
 # Read the Hindi text file
 with open(input_file, "r", encoding="utf-8") as file:
@@ -41,8 +41,8 @@ for sentence in sentences:
     if 6 <= len(sentence.split()) <= 60:
         filtered_sentences.append(sentence)
 
-# Convert to DataFrame and save to Excel
+# Convert to DataFrame and save to txt file
 df = pd.DataFrame({"Sentence": filtered_sentences})
-df.to_excel(output_file, index=False, engine='openpyxl')  # Use engine='openpyxl'
+df.to_csv(output_file, index=False, header=False, sep='\n', encoding='utf-8') # Save to txt 
 
 print(f"Processed sentences saved to {output_file}")
